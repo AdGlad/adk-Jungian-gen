@@ -53,6 +53,10 @@ from typing import Optional,List, AsyncGenerator
 from google.cloud import storage
 from google.genai import types as genai_types
 
+# Configure google-genai to use Vertex AI via environment variables
+os.environ.setdefault('GOOGLE_GENAI_USE_VERTEXAI', 'true')
+os.environ.setdefault('GOOGLE_CLOUD_LOCATION', 'us-central1')
+
 from google.adk.agents import BaseAgent, LlmAgent, SequentialAgent
 from google.adk.agents.invocation_context import InvocationContext
 from google.adk.events import Event

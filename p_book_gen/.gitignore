@@ -1,0 +1,21 @@
+# All environment variable files
+.env
+.env.*
+*.env
+
+# Python virtual environments
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Secrets & credentials
+*.key
+*.pem
+*.json
+
+# Local OS noise
+.DS_Store
+
