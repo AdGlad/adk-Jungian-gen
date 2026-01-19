@@ -438,10 +438,10 @@ def _outline_instruction(num_chapters: int) -> str:
     Instruction for the outline planning agent.
 
     It reads the JSON spec from the user message and produces a chapter-by-chapter
-    outline, including a UNIQUE Sun Tzu aphorism for each chapter.
+    outline, including a UNIQUE Carl Jung aphorism for each chapter.
     """
     return f"""
-You are a planning agent for a non-fiction Kindle book inspired by Sun Tzu's philosophy.
+You are a planning agent for a non-fiction Kindle book inspired by Carl Jung's philosophy.
 
 The user will provide ONE JSON object as their first message. It will include fields like:
 - book_topic
@@ -457,26 +457,26 @@ Your task:
 
 1. Read and understand the JSON object, particularly the book_title and book_topic.
 2. The book title is: {{book_title}} - use this exact title as the foundation for your outline.
-3. FIRST, select appropriate Sun Tzu aphorisms, THEN create chapter titles and descriptions around them.
+3. FIRST, select appropriate Carl Jung aphorisms, THEN create chapter titles and descriptions around them.
 4. Create a chapter-by-chapter outline for exactly {{min_chapters}} chapters (or {num_chapters} if min_chapters is not specified).
-5. For each chapter, start by selecting one of Sun Tzu's most famous aphorisms, then craft:
+5. For each chapter, start by selecting one of Carl Jung's most famous aphorisms, then craft:
    - Chapter title that relates to the aphorism and the book's overall theme (do not prefix with the book title; keep titles standalone and descriptive)
    - A short one-line description of how the aphorism applies to the chapter's focus
    - The complete aphorism text
    - The source book where the aphorism appears
-6. Each Sun Tzu aphorism must be:
-   - A real, authentic aphorism from Sun Tzu's works
-   - One of Sun Tzu's most famous and widely recognized aphorisms
+6. Each Carl Jung aphorism must be:
+   - A real, authentic aphorism from Carl Jung's works
+   - One of Carl Jung's most famous and widely recognized aphorisms
    - Assigned to exactly ONE chapter in this outline
    - NOT reused across chapters
    - Include the specific book/source reference
-7. Prioritize Sun Tzu's most popular aphorisms such as:
-   - "The supreme art of war is to subdue the enemy without fighting." from The Art of War
-   - "If you know the enemy and know yourself, you need not fear the result of a hundred battles." from The Art of War
-   - "In the midst of chaos, there is also opportunity." from The Art of War
-   - "All warfare is based on deception." from The Art of War
-   - "The control of a large force is the same principle as the control of a few men: it is merely a question of dividing up their numbers." from The Art of War
-   - And other well-known aphorisms from The Art of War
+7. Prioritize Carl Jung's most popular aphorisms such as:
+   - "The meeting of two personalities is like the contact of two chemical substances: if there is any reaction, both are transformed." from The Archetypes and the Collective Unconscious
+   - "Your visions will become clear only when you can look into your own heart. Who looks outside, dreams; who looks inside, awakes." from Memories, Dreams, Reflections
+   - "The privilege of a lifetime is to become who you truly are." from Memories, Dreams, Reflections
+   - "Everything that irritates us about others can lead us to an understanding of ourselves." from Memories, Dreams, Reflections
+   - "The shoe that fits one person pinches another; there is no recipe for living that suits all cases." from Modern Man in Search of a Soul
+   - And other well-known aphorisms from Carl Jung's works
 8. The outline should create a cohesive framework where each chapter explores the deeper meaning and implications of its assigned aphorism as applied to the book's topic and purpose.
 
 Chapter titles must be standalone - do not include the book title as a prefix. For example, avoid "The Art of Business - Navigating Complex Situations"; instead use "Navigating Complex Situations".
@@ -488,9 +488,9 @@ Output format:
 
   Chapter 1: <Chapter title>
   Description: <one line>
-  Aphorism: "Exact Sun Tzu aphorism text."
+  Aphorism: "Exact Carl Jung aphorism text."
   Source: <Book title where aphorism appears>
-  Author: Sun Tzu
+  Author: Carl Jung
 
   Chapter 2: ...
   ...
@@ -498,7 +498,7 @@ Output format:
 - Do NOT include any JSON or code in your output.
 - Do NOT mention tools or models.
 - Use UK English spelling wherever applicable.
-- Every aphorism must be from Sun Tzu - no other authors allowed.
+- Every aphorism must be from Carl Jung - no other authors allowed.
 """
 
 
@@ -773,7 +773,7 @@ def _chapter_instruction(chapter_number: int) -> str:
     - Follow Kindle/KDP-friendly Markdown conventions.
     """
     return f"""
-You are a specialist non-fiction book writer for chapter {chapter_number} of a Kindle book inspired by Sun Tzu's philosophy.
+You are a specialist non-fiction book writer for chapter {chapter_number} of a Kindle book inspired by Carl Jung's philosophy.
 Do not write in “workshop facilitator” tone. Write like an author: opinionated, specific, occasionally anecdotal, and willing to linger on a point for a full paragraph before moving on.
 
 The user will provide ONE JSON object as their first message. It will include fields like:
@@ -791,7 +791,7 @@ Book subtitle (if any): use the "book_subtitle" field from the input JSON if pre
 
 
 Before your turn, an outline planning agent has already created a full outline
-for all chapters, including a unique Sun Tzu aphorism for each chapter. That outline
+for all chapters, including a unique Carl Jung aphorism for each chapter. That outline
 appears earlier in the conversation and is also stored in shared state.
 
 Your task for chapter {chapter_number}:
@@ -804,7 +804,7 @@ Your task for chapter {chapter_number}:
 1. If you are not skipping this chapter, read the outline that was generated earlier and
    identify the entry for chapter {chapter_number}.
    - Use the chapter title and short description from that outline as the basis for this chapter.
-   - Use the EXACT Sun Tzu aphorism assigned to chapter {chapter_number} in the outline.
+   - Use the EXACT Carl Jung aphorism assigned to chapter {chapter_number} in the outline.
    - The chapter content MUST be crafted based on the deep meaning and implications of this aphorism.
    - Include the source book reference as provided in the outline.
 
@@ -820,7 +820,7 @@ Your task for chapter {chapter_number}:
    - Directly below the heading, include the aphorism from the outline in this exact format:
 
        “Exact quote text.”
-       — Sun Tzu, <Source Book>
+       — Carl Jung, <Source Book>
 
    - Then write the body text that aligns with the book topic, purpose, target audience,
      and the outline description directly after the quote.
@@ -834,8 +834,8 @@ Your task for chapter {chapter_number}:
        <mbp:pagebreak />
 
 4. The aphorism you use MUST:
-   - Be a genuine Sun Tzu aphorism that fits the chapter theme.
-   - If the outline provides a different aphorism, you must replace it with an appropriate Sun Tzu aphorism.
+   - Be a genuine Carl Jung aphorism that fits the chapter theme.
+   - If the outline provides a different aphorism, you must replace it with an appropriate Carl Jung aphorism.
    - Not be reused from any other chapter in the outline.
    - The chapter content must be crafted based on the aphorism's deep meaning and implications.
 
@@ -968,7 +968,7 @@ You are a book assembler agent.
 Context:
 - The user provided ONE JSON object as their first message with fields such as:
   book_topic, book_title, author_name, author_bio, author_voice_style, target_audience, book_purpose, min_chapters.
-- An outline planning agent has already created an outline for all chapters using only Sun Tzu quotes.
+- An outline planning agent has already created an outline for all chapters using only Carl Jung quotes.
 - A front-matter agent has already created Dedication, Foreword, Introduction, and About the Author
   and stored that text in shared state under 'front_matter'.
 - Several chapter-writing agents have already run and stored their outputs in shared state.
